@@ -1,0 +1,125 @@
+1. get user input:
+    -method : maze = Maze(height, width, walls)
+              board = maze.board  (-->> you need this later to pass to search functions.)
+
+    -inputs : {
+        "height": NUMBER_OF_ROWS,
+        "width": NUMBER_OF_COLUMNS,
+        "walls": NUMBER_OF_WALLS (optional)
+    }
+
+    -returned data : List of board point --> { 1 : "WALL", 0 : "EMPTY" }
+                     example of a 5*5 board:
+                     [
+                        [1, 1, 1, 1, 1, 1, 1],
+                        [1, 0, 1, 1, 0, 0, 1],
+                        [1, 0, 1, 1, 0, 0, 1],
+                        [1, 1, 0, 1, 1, 0, 1],
+                        [1, 0, 1, 1, 0, 0, 1],
+                        [1, 1, 0, 0, 0, 1, 1],
+                        [1, 1, 1, 1, 1, 1, 1]
+                     ]
+
+
+2. call bfs:
+    -method : result = breadth_first_search(maze.board, start, end)
+
+    -user_input : {
+        "start" : {
+            "row": START_POINT_ROW_NUMBER,
+            "column": START_POINT_COLUMN_NUMBER
+        },
+        "end" : {
+            "row": END_POINT_ROW_NUMBER,
+            "column": END_POINT_COLUMN_NUMBER
+        }
+    }
+
+    -returned data : {
+        "result": BOOLEAN (true if there is a solution, false otherwise),
+        "solution": LIST_OF_SOLUTION_POINTS (sorted from start point to the end point),
+        "path_cost": COST_OF_SOLUTION_PATH,
+        "visited_nodes_number": NUMBER_OF_VISITED_NODES
+    }
+
+    example of returned data :
+    {
+        "result": true,
+        "solution": [
+            {
+                "row": 1,
+                "column": 1
+            },
+            {
+                "row": 2,
+                "column": 1
+            },
+            {
+                "row": 2,
+                "column": 2
+            },
+            {
+                "row": 3,
+                "column": 2
+            },
+            {
+                "row": 4,
+                "column": 2
+            },
+            {
+                "row": 5,
+                "column": 2
+            },
+            {
+                "row": 5,
+                "column": 3
+            }
+        ],
+        "path_cost": 7,
+        "visited_nodes_number": 24
+    }
+
+
+3. call iddfs:
+    -method : result = iterative_deepening_depth_first_search(maze.board, start, end, max_depth)
+
+    -user_input : {
+        "start" : {
+            "row": START_POINT_ROW_NUMBER,
+            "column": START_POINT_COLUMN_NUMBER
+        },
+        "end" : {
+            "row": END_POINT_ROW_NUMBER,
+            "column": END_POINT_COLUMN_NUMBER
+        },
+        "max_depth" : MAX_DEPTH_VALUE (integer)
+    }
+
+    -returned data : {
+        "result": BOOLEAN (true if there is a solution, false otherwise),
+        "solution": LIST_OF_SOLUTION_POINTS (sorted from start point to the end point),
+        "path_cost": COST_OF_SOLUTION_PATH,
+        "visited_nodes_number": NUMBER_OF_VISITED_NODES
+    }
+
+
+4. call a star:
+    -method : result =  a_star_search(maze.board, start, end)
+
+    -user_input : {
+        "start" : {
+            "row": START_POINT_ROW_NUMBER,
+            "column": START_POINT_COLUMN_NUMBER
+        },
+        "end" : {
+            "row": END_POINT_ROW_NUMBER,
+            "column": END_POINT_COLUMN_NUMBER
+        },
+    }
+
+    -returned data : {
+        "result": BOOLEAN (true if there is a solution, false otherwise),
+        "solution": LIST_OF_SOLUTION_POINTS (sorted from start point to the end point),
+        "path_cost": COST_OF_SOLUTION_PATH,
+        "visited_nodes_number": NUMBER_OF_VISITED_NODES
+    }
