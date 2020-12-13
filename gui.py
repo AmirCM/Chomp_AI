@@ -28,7 +28,7 @@ class Field:
         for i in range(0, self.width, self.box_size):
             z = 0
             for j in range(0, self.height, self.box_size):
-                if board[z][k] is 0:
+                if board[z][k] == 0:
                     cv2.rectangle(self.img, (i + 4, j + 4), (i + self.box_size - 4, j + self.box_size - 4),
                                   self.cube_color,
                                   -1)
@@ -56,17 +56,20 @@ class Field:
     def get_pos(self):
         return self.x_clk, self.y_clk
 
-    def change_cube(self, pos):
+    def change_cube(self, pos, color=None):
+        if color is None:
+            color = self.path_cube_color
+
         cv2.rectangle(self.img, (pos[0] * self.box_size,
                                  pos[1] * self.box_size), ((pos[0] + 1) * self.box_size,
                                                            (pos[1] + 1) * self.box_size),
-                      self.path_cube_color, -1)
+                      color, -1)
 
     def draw_path(self, result):
         for pixel in result:
             print(pixel)
             self.change_cube((pixel['column'], pixel['row']))
-            cv2.imshow("AI Project Of My Love", self.img)
+            cv2.imshow("AI Project", self.img)
             cv2.waitKey(300)
 
     def mouse_callback(self, e, x, y, flags, param):

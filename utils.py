@@ -269,16 +269,15 @@ def heuristic(current_node, end_node):
 
 if __name__ == '__main__':
     maze = Maze(20, 20)
-    print(maze.board)
 
     maze.print_board()
     start = {
-        'row': 5,
-        'column': 8
+        'row': 2,
+        'column': 2
     }
     end = {
-        'row': 10,
-        'column': 10
+        'row': 5,
+        'column': 5
     }
     print("*******BFS")
     result = breadth_first_search(maze.board, start, end)
